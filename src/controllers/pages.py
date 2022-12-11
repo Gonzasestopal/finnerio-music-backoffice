@@ -3,6 +3,10 @@ from src.forms import *
 
 blueprint = Blueprint('pages', __name__)
 
+from src.settings import FINNERIO_MUSIC_API_URL
+
+from urllib.parse import urljoin
+
 import requests
 
 ################
@@ -12,7 +16,8 @@ import requests
 
 @blueprint.route('/')
 def home():
-    response = requests.get("http://localhost:8000/genres")
+    path = 'genres'
+    response = requests.get(urljoin(FINNERIO_MUSIC_API_URL, path))
     genres_info = response.json()
     return render_template('pages/placeholder.home.html', genres=genres_info)
 

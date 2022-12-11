@@ -4,3 +4,4 @@ WTForms
 coverage
 requests
 gunicorn
+python-dotenv
