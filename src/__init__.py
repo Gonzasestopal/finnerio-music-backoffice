@@ -1,6 +1,7 @@
 import logging
 
-from flask import Flask, request as req
+from flask import Flask
+from flask import request as req
 
 from src.controllers import pages
 

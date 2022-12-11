@@ -1,13 +1,15 @@
-from flask import render_template, Blueprint, request
-from src.forms import *
-
-blueprint = Blueprint('pages', __name__)
-
-from src.settings import FINNERIO_MUSIC_API_URL
-
 from urllib.parse import urljoin
 
 import requests
+from flask import Blueprint, render_template, request
+
+from src.forms import *
+from src.settings import FINNERIO_MUSIC_API_URL
+
+blueprint = Blueprint('pages', __name__)
+
+
+
 
 ################
 #### routes ####
