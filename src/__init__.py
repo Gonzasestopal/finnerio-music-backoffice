@@ -2,12 +2,11 @@ import logging
 
 from flask import Flask, request as req
 
-from app.controllers import pages
+from src.controllers import pages
 
 
-def create_app(config_filename):
+def create_app():
     app = Flask(__name__)
-    app.config.from_object(config_filename)
 
     app.register_blueprint(pages.blueprint)
 

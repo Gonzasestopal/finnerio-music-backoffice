@@ -1,5 +1,5 @@
 from flask import render_template, Blueprint, request
-from app.forms import *
+from src.forms import *
 
 blueprint = Blueprint('pages', __name__)
 
