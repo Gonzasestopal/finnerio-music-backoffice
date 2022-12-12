@@ -15,6 +15,12 @@
       <td>{{ loop.index }}</td>
       <td>{{ genre.name }}</td>
     </tr>
+    {% for subgenre in genre.subgenres %}
+    <tr>
+      <td></td>
+      <td>{{ subgenre.name }}</td>
+    </tr>
+    {% endfor %}
     {% endfor %}
   </tbody>
 </table>
