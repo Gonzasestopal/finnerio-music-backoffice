@@ -46,6 +46,22 @@ def songs():
     info = response.json()
     return render_template('pages/songs.html', songs=info)
 
+@blueprint.route('/songs')
+def song_by_artist():
+    path = 'artists?song_id=14/'
+    response = requests.get(urljoin(FINNERIO_MUSIC_API_URL, path))
+    info = response.json()
+    return render_template('pages/songs.html', songs=info)
+
+
+@blueprint.route('/song')
+def find_a_song():
+    path = 'songs/14/'
+    response = requests.get(urljoin(FINNERIO_MUSIC_API_URL, path))
+    info = response.json()
+    return render_template('pages/song.html', song=info)
+
+
 
 @blueprint.route('/login')
 def login():
