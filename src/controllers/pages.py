@@ -17,16 +17,34 @@ blueprint = Blueprint('pages', __name__)
 
 
 @blueprint.route('/')
-def home():
+def genres():
     path = 'genres'
     response = requests.get(urljoin(FINNERIO_MUSIC_API_URL, path))
-    genres_info = response.json()
-    return render_template('pages/placeholder.home.html', genres=genres_info)
+    info = response.json()
+    return render_template('pages/genres.html', genres=info)
 
 
-@blueprint.route('/about')
-def about():
-    return render_template('pages/placeholder.about.html')
+@blueprint.route('/artists')
+def artists():
+    path = 'genres/1/artists'
+    response = requests.get(urljoin(FINNERIO_MUSIC_API_URL, path))
+    info = response.json()
+    return render_template('pages/artists.html', artists=info)
+
+@blueprint.route('/albums')
+def albums():
+    path = 'artists/2/albums'
+    response = requests.get(urljoin(FINNERIO_MUSIC_API_URL, path))
+    info = response.json()
+    print(info)
+    return render_template('pages/albums.html', albums=info)
+
+@blueprint.route('/songs')
+def songs():
+    path = 'albums/3/'
+    response = requests.get(urljoin(FINNERIO_MUSIC_API_URL, path))
+    info = response.json()
+    return render_template('pages/songs.html', songs=info)
 
 
 @blueprint.route('/login')
