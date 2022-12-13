@@ -7,6 +7,7 @@
     <tr>
       <th>#</th>
       <th>Name</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -14,11 +15,13 @@
     <tr>
       <td>{{ loop.index }}</td>
       <td>{{ genre.name }}</td>
+      <td><a href="/genres/{{genre.id}}/artists">Find artists</a></td>
     </tr>
     {% for subgenre in genre.subgenres %}
     <tr>
       <td></td>
       <td>{{ subgenre.name }}</td>
+      <td></td>
     </tr>
     {% endfor %}
     {% endfor %}

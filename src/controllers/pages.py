@@ -24,43 +24,55 @@ def genres():
     return render_template('pages/genres.html', genres=info)
 
 
+@blueprint.route('/genres/<genre_id>/artists')
+def artist_by_genre(genre_id):
+    path = '/'.join(['genres', genre_id, 'artists'])
+    response = requests.get(urljoin(FINNERIO_MUSIC_API_URL, path))
+    info = response.json()
+    return render_template('pages/artists.html', artists=info)
+
 @blueprint.route('/artists')
 def artists():
-    path = 'genres/1/artists'
+    path = 'artists'
     response = requests.get(urljoin(FINNERIO_MUSIC_API_URL, path))
     info = response.json()
     return render_template('pages/artists.html', artists=info)
 
 @blueprint.route('/albums')
 def albums():
-    path = 'artists/2/albums'
+    path = 'albums'
     response = requests.get(urljoin(FINNERIO_MUSIC_API_URL, path))
     info = response.json()
-    print(info)
     return render_template('pages/albums.html', albums=info)
 
-@blueprint.route('/songs')
-def songs():
-    path = 'albums/3/'
+@blueprint.route('/artists/<artist_id>/albums')
+def albums_by_artist(artist_id):
+    path = '/'.join(['artists', artist_id, 'albums'])
+    response = requests.get(urljoin(FINNERIO_MUSIC_API_URL, path))
+    info = response.json()
+    return render_template('pages/albums.html', albums=info)
+
+@blueprint.route('/albums/<album_id>')
+def songs_by_album(album_id):
+    path = '/'.join(['albums', album_id])
     response = requests.get(urljoin(FINNERIO_MUSIC_API_URL, path))
     info = response.json()
     return render_template('pages/songs.html', songs=info)
 
 @blueprint.route('/songs')
 def song_by_artist():
-    path = 'artists?song_id=14/'
+    path = 'songs'
     response = requests.get(urljoin(FINNERIO_MUSIC_API_URL, path))
     info = response.json()
     return render_template('pages/songs.html', songs=info)
 
 
-@blueprint.route('/song')
-def find_a_song():
-    path = 'songs/14/'
+@blueprint.route('/artists/<artist_id>')
+def find_artist(artist_id):
+    path = '/'.join(['artists', artist_id])
     response = requests.get(urljoin(FINNERIO_MUSIC_API_URL, path))
     info = response.json()
-    return render_template('pages/song.html', song=info)
-
+    return render_template('pages/artists.html', artists=info)
 
 
 @blueprint.route('/login')

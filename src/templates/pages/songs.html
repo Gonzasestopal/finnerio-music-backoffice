@@ -10,6 +10,7 @@
       <th>Genre</th>
       <th>Album</th>
       <th>Artist</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -20,6 +21,7 @@
       <td>{{ song.genre_id }}</td>
       <td>{{ song.album_id }}</td>
       <td>{{ song.artist_id }}</td>
+      <td><a href="/artists/{{song.artist_id}}">Find Artist</a></td>
     </tr>
     {% endfor %}
   </tbody>

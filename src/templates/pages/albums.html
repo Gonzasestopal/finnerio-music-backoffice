@@ -8,7 +8,8 @@
       <th>#</th>
       <th>Name</th>
       <th>Genre</th>
-      <th>Artist</th>
+      <th></th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -17,7 +18,9 @@
       <td>{{ loop.index }}</td>
       <td>{{ album.name }}</td>
       <td>{{ album.genre_id }}</td>
-      <td>{{ album.artist_id }}</td>
+      <td><a href="/artists/{{album.artist_id}}">Find artist</a></td>
+      <td><a href="/albums/{{album.id}}">Find songs</a></td>
+
     </tr>
     {% endfor %}
   </tbody>
