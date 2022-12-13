@@ -1,13 +1,13 @@
+from http import HTTPStatus
 from urllib.parse import urljoin
 
 import requests
-from flask import Blueprint, render_template, request
+from flask import Blueprint, redirect, render_template, request, url_for
 
 from src.forms import *
 from src.settings import FINNERIO_MUSIC_API_URL
 
 blueprint = Blueprint('pages', __name__)
-
 
 
 
@@ -49,6 +49,8 @@ def albums():
 def albums_by_artist(artist_id):
     path = '/'.join(['artists', artist_id, 'albums'])
     response = requests.get(urljoin(FINNERIO_MUSIC_API_URL, path))
+    if response.status_code == HTTPStatus.NOT_FOUND:
+        return redirect(url_for('pages.artists'))
     info = response.json()
     return render_template('pages/albums.html', albums=info)
 
@@ -57,6 +59,8 @@ def songs_by_album(album_id):
     path = '/'.join(['albums', album_id])
     response = requests.get(urljoin(FINNERIO_MUSIC_API_URL, path))
     info = response.json()
+    if response.status_code == HTTPStatus.NOT_FOUND:
+        return redirect(url_for('pages.albums'))
     return render_template('pages/songs.html', songs=info)
 
 @blueprint.route('/songs')
